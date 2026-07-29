@@ -10,4 +10,4 @@ class ClientModel(Base):
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
     create_at = Column(DateTime, default=datetime.now())
-    update = Column(DateTime, default=datetime.now(), onupdate=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now(), onupdate=datetime.now)

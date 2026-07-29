@@ -5,6 +5,7 @@ from core import Base
 
 class TicketModel(Base):
     __tablename__ = "tickets"
+    
     id = Column(Integer, primary_key=True, index=True)
     ticket_id = Column(Integer, unique=True, nullable=False)
     client_id = Column(Integer, ForeignKey("clients.id"), nullable=False, index=True)
