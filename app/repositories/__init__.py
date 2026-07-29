@@ -1,0 +1,1 @@
+from app.repositories.base_repository import BaseClientRepository, BaseTicketRepository

@@ -14,5 +14,5 @@ class TicketModel(Base):
     priority = Column(String(20), nullable=True)
     tags = Column(String(100), nullable=True)
     create_at = Column(DateTime, default=datetime.now())
-    resolved_at = Column(DateTime, default=datetime.now())
+    resolved_at = Column(DateTime, nullable=True)
     satisfaction_rating = Column(String(20), nullable=True)

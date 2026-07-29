@@ -9,6 +9,8 @@ class CreateTicket(BaseModel):
     status: str
     priority: str
     tags: str | None = None
+    resolved_at: datetime | None = None
+    satisfaction_rating: str | None = None
     
 class UpdateTicket(BaseModel):
     subject: str | None = None
@@ -24,10 +26,10 @@ class ResponseTicket(BaseModel):
     subject: str
     status: str
     priority: str
-    tags: str | None = None
+    tags: str | None
     created_at: datetime
-    resolved_at: datetime
-    satisfaction_rating: str
+    resolved_at: datetime | None
+    satisfaction_rating: str | None
     
     class Config:
         from_attributes = True
