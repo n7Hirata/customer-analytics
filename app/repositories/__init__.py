@@ -1,1 +1,3 @@
 from app.repositories.base_repository import BaseClientRepository, BaseTicketRepository
+from app.repositories.client_repository import ClientRepository
+from app.repositories.ticket_repository import TicketRepository

@@ -1,6 +1,9 @@
-from repositories import BaseClientRepository
-from schemas import CreateClient, UpdateClient
 from fastapi import HTTPException, status
+
+
+from app.repositories import BaseClientRepository
+from app.schemas import CreateClient, UpdateClient
+
 
 class ClientService:
     def __init__(self, repository: BaseClientRepository):
@@ -10,7 +13,7 @@ class ClientService:
         client = self.repository.get_by_email(client_data.email)
         if client:
             raise HTTPException(status_code=status.HTTP_409_CONFLICT)
-        return self.repository.create(client)
+        return self.repository.create(client_data)
     
     def lits_clients(self):
         return self.repository.get_all()

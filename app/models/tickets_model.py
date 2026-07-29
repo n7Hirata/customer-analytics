@@ -1,7 +1,9 @@
 from sqlalchemy import Integer, String, Column, DateTime, ForeignKey
 from datetime import datetime
 
-from core import Base
+
+from app.core import Base
+
 
 class TicketModel(Base):
     __tablename__ = "tickets"

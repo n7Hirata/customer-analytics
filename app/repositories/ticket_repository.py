@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
 
-from repositories import BaseTicketRepository
-from models import TicketModel
-from schemas import CreateTicket, UpdateTicket, ResponseTicket
+from app.repositories import BaseTicketRepository
+from app.models import TicketModel
+from app.schemas import CreateTicket, UpdateTicket, ResponseTicket
 
 
 class TicketRepository(BaseTicketRepository):

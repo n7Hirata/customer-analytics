@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
 
-from repositories import BaseClientRepository
-from models import ClientModel
-from schemas import CreateClient, UpdateClient, ResponseClient
+from app.repositories import BaseClientRepository
+from app.models import ClientModel
+from app.schemas import CreateClient, UpdateClient, ResponseClient
 
 
 class ClientRepository(BaseClientRepository):
@@ -13,10 +13,10 @@ class ClientRepository(BaseClientRepository):
     def get_all(self) -> list[ClientModel]:
         return self.db.query(ClientModel).all()
     
-    def get_by_id(self, id) -> ClientModel | None:
+    def get_by_id(self, id: int) -> ClientModel | None:
         return self.db.query(ClientModel).filter(ClientModel.id == id).first()
     
-    def get_by_email(self, email) -> ClientModel | None:
+    def get_by_email(self, email: str) -> ClientModel | None:
         return self.db.query(ClientModel).filter(ClientModel.email == email).first()
     
     def create(self, client_data: CreateClient) -> ClientModel:

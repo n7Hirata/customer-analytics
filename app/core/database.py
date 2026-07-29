@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-from core import settings
+
+from app.core import settings
+
 
 # Inicia a conexão com o banco
 engine = create_engine(settings.DATABASE_URL)
@@ -13,7 +15,7 @@ class Base(DeclarativeBase):
     pass
 
 # Busca a sessão no banco de dados
-def get_gb():
+def get_db():
     db = SessionLocal()
     try:
         yield db
