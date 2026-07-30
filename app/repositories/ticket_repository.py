@@ -13,8 +13,8 @@ class TicketRepository(BaseTicketRepository):
     def get_all(self) -> list[TicketModel]:
         return self.db.query(TicketModel).all()
     
-    def get_by_id(self, id) -> TicketModel | None:
-        return self.db.query(TicketModel).filter(TicketModel.id == id).first()
+    def get_by_id(self, ticket_id) -> TicketModel | None:
+        return self.db.query(TicketModel).filter(TicketModel.ticket_id == ticket_id).first()
     
     def get_by_client_id(self, client_id) -> list[TicketModel] | None:
         return self.db.query(TicketModel).filter(TicketModel.client_id == client_id).all()
@@ -22,8 +22,7 @@ class TicketRepository(BaseTicketRepository):
     def create(self, ticket_data: CreateTicket) -> TicketModel:
         ticket = TicketModel(ticket_id=ticket_data.ticket_id, client_id=ticket_data.client_id,
                              subject=ticket_data.subject, status=ticket_data.status, 
-                             priority=ticket_data.priority, tags=ticket_data.tags,
-                             resolved=ticket_data.resolved_at, satisfaction_rating=ticket_data.satisfaction_rating)
+                             priority=ticket_data.priority, tags=ticket_data.tags)
         self.db.add(ticket)
         self.db.commit()
         self.db.refresh(ticket)

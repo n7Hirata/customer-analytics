@@ -9,8 +9,6 @@ class CreateTicket(BaseModel):
     status: str
     priority: str
     tags: str | None = None
-    resolved_at: datetime | None = None
-    satisfaction_rating: str | None = None
     
 class UpdateTicket(BaseModel):
     subject: str | None = None

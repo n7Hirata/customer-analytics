@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 
 from app.core import get_db
-from app.repositories import TicketRepository
+from app.repositories import TicketRepository, ClientRepository
 from app.schemas import CreateTicket, UpdateTicket, ResponseTicket
 from app.services import TicketService
 
@@ -19,9 +19,9 @@ def get_service(db: Session=Depends(get_db)) -> TicketService:
         cria o repositorio concreto com a sessão
         e cria o service e injeta o repository nele.
     '''
-    
-    repository = TicketRepository(db)
-    return TicketService(repository)
+    client_repository = ClientRepository(db)
+    ticket_repository = TicketRepository(db)
+    return TicketService(ticket_repository, client_repository)
 
 @ticket_router.post("", response_model=ResponseTicket)
 def create_ticket(ticket_data: CreateTicket, service: TicketService = Depends(get_service)):
