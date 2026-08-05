@@ -16,7 +16,7 @@ metrics_router = APIRouter(
 def get_service(db: Session = Depends(get_db)) -> MetricsServices:
     ticket_repository = TicketRepository(db)
     client_repository = ClientRepository(db)
-    return MetricsServices(ticket_repository, client_repository)
+    return MetricsServices(client_repository, ticket_repository)
 
 @metrics_router.get("/{client_id}", response_model=Metrics)
 def get_metrics(client_id: int, service: MetricsServices = Depends(get_service)):

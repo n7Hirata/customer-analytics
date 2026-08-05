@@ -5,6 +5,7 @@ from fastapi import HTTPException, status
 
 from app.schemas import Metrics
 from app.repositories import BaseClientRepository, BaseTicketRepository
+from app.services.client_service import ClientService
 
 
 class MetricsServices:
@@ -25,9 +26,9 @@ class MetricsServices:
         
         open_tickets = (total_tickets - resolved_tickets)
         
-        resolution_rate = (resolved_tickets / (total_tickets * 100)) if tickets > 0 else 0
+        resolution_rate = (resolved_tickets / total_tickets * 100) if total_tickets > 0 else 0
         
-        avg_days = self.calculate_avg_days_tickets(total_tickets)
+        avg_days = self.calculate_avg_days_tickets(tickets)
         
         top_tags = self.extract_top_tags(tickets)
         
@@ -61,7 +62,7 @@ class MetricsServices:
             return []
         
         counter = Counter(all_tags)
-        return [tag for tag in counter.most_common(top)]
+        return [tag for tag, count in counter.most_common(top)]
     
     def extract_top_subjects(self, tickets, top: int = 5) -> list[str] | None:
         all_subjects = []
@@ -73,4 +74,4 @@ class MetricsServices:
             return []
         
         counter = Counter(all_subjects)
-        return [subject for subject in counter.most_common(top)]
+        return [subject for subject, count in counter.most_common(top)]

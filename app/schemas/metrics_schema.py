@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 class Metrics(BaseModel):
     total_tickets: int
-    avg_days_tickets: float
+    avg_days_tickets: float | None
     open_tickets: int
     resolved_tickets: int
     resolution_rate: float
